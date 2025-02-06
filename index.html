@@ -3,25 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Under Construction</title>
+    <title>Random 8-Digit Number Generator</title>
     <style>
         body {
-            background-color: #f0f0f0;
             font-family: Arial, sans-serif;
             text-align: center;
-            padding: 50px;
+            margin: 50px;
         }
-        h1 {
-            color: #333;
-        }
-        p {
-            color: #666;
-            font-size: 1.2em;
+        #number {
+            font-size: 2em;
+            margin: 20px;
         }
     </style>
 </head>
 <body>
-    <h1>Sorry!</h1>
-    <p>This website is being fixed on right now.</p>
+    <h1>Random 8-Digit Number Generator</h1>
+    <p id="number">Generating...</p>
+    <script>
+        function generateNumber() {
+            let randomNumber = Math.floor(10000000 + Math.random() * 90000000);
+            document.getElementById("number").textContent = randomNumber;
+        }
+        generateNumber(); // Initial generation
+        setInterval(generateNumber, 150000); // Every 2.5 minutes
+    </script>
 </body>
 </html>
+
+<!-- API endpoint -->
+<script>
+    const express = require('express');
+    const app = express();
+    const port = 3000;
+
+    app.get('/random-number', (req, res) => {
+        const randomNumber = Math.floor(10000000 + Math.random() * 90000000);
+        res.send(randomNumber.toString());
+    });
+
+    app.listen(port, () => {
+        console.log(`Server running at http://localhost:${port}`);
+    });
+</script>
